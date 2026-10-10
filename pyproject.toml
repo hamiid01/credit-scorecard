@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "credit-scorecard"
+version = "1.0.0"
+description = "Credit scorecards: monotonic WOE binning, points scaling, calibration, stability and reject inference"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Abdelhamid Jbara" }]
+keywords = ["credit-risk", "scorecard", "woe", "information-value", "pd-model", "reject-inference", "ifrs9"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+  "numpy>=1.23",
+  "pandas>=1.5",
+  "scikit-learn>=1.2",
+  "scipy>=1.9",
+]
+
+[project.optional-dependencies]
+plots = ["matplotlib>=3.6"]
+dev = ["pytest>=7.0", "pytest-cov>=4.0"]
+
+[project.scripts]
+credit-scorecard = "credit_scorecard.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning"]
